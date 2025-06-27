@@ -29,29 +29,29 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_REGION }}
 
-      - name: Terraform Init
-        run: terraform init
+    #   - name: Terraform Init
+    #     run: terraform init
 
-      - name: Terraform Plan
-        run: terraform plan
+    #   - name: Terraform Plan
+    #     run: terraform plan
       
-      - name: Terraform Apply
-        run: terraform apply -auto-approve
+    #   - name: Terraform Apply
+    #     run: terraform apply -auto-approve
 
-      - name: Set bucket name from Terraform output
-        id: get_bucket
-        run: echo "BUCKET_NAME=$(terraform output -raw bucket_name)" >> $GITHUB_ENV
+    #   - name: Set bucket name from Terraform output
+    #     id: get_bucket
+    #     run: echo "BUCKET_NAME=$(terraform output -raw bucket_name)" >> $GITHUB_ENV
 
-      - name: Debug bucket name
-        run: |
-           echo "Using bucket: $BUCKET_NAME"
+    #   - name: Debug bucket name
+    #     run: |
+    #        echo "Using bucket: $BUCKET_NAME"
 
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v2
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ap-south-1  # Change as needed
+    #   - name: Configure AWS credentials
+    #     uses: aws-actions/configure-aws-credentials@v2
+    #     with:
+    #       aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+    #       aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    #       aws-region: ap-south-1  # Change as needed
 
       - name: Sync static site to S3
         # run: aws s3 sync ./oxer-html s3://$BUCKET_NAME --delete
