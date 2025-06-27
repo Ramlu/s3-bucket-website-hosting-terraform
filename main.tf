@@ -58,12 +58,12 @@ resource "aws_s3_bucket_policy" "allow_access_from_another_account" {
   depends_on = [aws_s3_bucket_public_access_block.example]
 }
 
-resource "null_resource" "sync_site" {
-  provisioner "local-exec" {
-    command = "aws s3 sync ./oxer-html s3://${aws_s3_bucket.example.bucket}/ --delete --profile dem-profile"
-  }
+# resource "null_resource" "sync_site" {
+#   provisioner "local-exec" {
+#     command = "aws s3 sync ./oxer-html s3://${aws_s3_bucket.example.bucket}/ --delete --profile dem-profile"
+#   }
 
-  triggers = {
-    bucket_name = aws_s3_bucket.example.bucket
-  }
-}
+#   triggers = {
+#     bucket_name = aws_s3_bucket.example.bucket
+#   }
+# }
