@@ -42,7 +42,10 @@ jobs:
         id: get-bucket
         run: |
           echo "BUCKET_NAME=$(terraform output -raw bucket_name)" >> $GITHUB_ENV
+    
+      - name: Sync static site to S3
+        run: aws s3 sync ./oxer-html s3://my-tf-bucket-${{ steps.terraform.outputs.bucket_suffix }}/ --delete
 
-      - name: Sync Static Website to S3
-        run: |
-          aws s3 sync ./oxer-html s3://${{ env.BUCKET_NAME }}/ --delete
+    #   - name: Sync Static Website to S3
+    #     run: |
+    #       aws s3 sync ./oxer-html s3://${{ env.BUCKET_NAME }}/ --delete
