@@ -55,8 +55,7 @@ jobs:
 
       - name: Sync static site to S3
         # run: aws s3 sync ./oxer-html s3://$BUCKET_NAME --delete
-        run: aws s3 sync ./oxer-html s3://$BUCKET_NAME --delete --exact-timestamps
-        # if: env.BUCKET_NAME != ''
+        run: aws s3 sync ./oxer-html s3://my-tf-bucket-demo-2025 --delete --exact-timestamps
         # run: aws s3 sync ./oxer-html s3://$BUCKET_NAME --delete
 
 
