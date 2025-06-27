@@ -5,7 +5,7 @@
 # }
 
 resource "aws_s3_bucket" "example" {
-  bucket = "my-tf-bucket-demo-2025"
+  bucket = "my-tf-bucket-demo-2025-test"
   force_destroy = true
   tags = {
     Name        = "My bucket"
