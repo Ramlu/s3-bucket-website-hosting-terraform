@@ -1,11 +1,11 @@
-resource "random_string" "bucket_suffix" {
-  length  = 6
-  upper   = false
-  special = false
-}
+# resource "random_string" "bucket_suffix" {
+#   length  = 6
+#   upper   = false
+#   special = false
+# }
 
 resource "aws_s3_bucket" "example" {
-  bucket = "my-tf-bucket-${random_string.bucket_suffix.result}"
+  bucket = "my-tf-bucket-demo-2025"
   force_destroy = true
   tags = {
     Name        = "My bucket"
