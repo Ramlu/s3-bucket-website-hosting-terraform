@@ -37,14 +37,23 @@ jobs:
 
       - name: Terraform Apply
         run: terraform apply -auto-approve
+      
+      - name: Terraform Apply
+        run: terraform apply -auto-approve
 
-      - name: Get Bucket Name
-        id: get-bucket
-        run: |
-          echo "BUCKET_NAME=$(terraform output -raw bucket_name)" >> $GITHUB_ENV
-    
+      - name: Set bucket name from Terraform output
+        run: echo "BUCKET_NAME=$(terraform output -raw bucket_name)" >> $GITHUB_ENV
+
       - name: Sync static site to S3
-        run: aws s3 sync ./oxer-html s3://my-tf-bucket-${{ steps.terraform.outputs.bucket_suffix }}/ --delete
+        run: aws s3 sync ./oxer-html s3://$BUCKET_NAME --delete
+
+    #   - name: Get Bucket Name
+    #     id: get-bucket
+    #     run: |
+    #       echo "BUCKET_NAME=$(terraform output -raw bucket_name)" >> $GITHUB_ENV
+    
+    #   - name: Sync static site to S3
+    #     run: aws s3 sync ./oxer-html s3://my-tf-bucket-${{ steps.terraform.outputs.bucket_suffix }}/ --delete
 
     #   - name: Sync Static Website to S3
     #     run: |
