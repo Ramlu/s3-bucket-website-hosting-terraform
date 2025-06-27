@@ -1,4 +1,4 @@
-output "s3_bucket_name" {
+output "bucket_name" {
   description = "The URL of the S3 static website"
   value = aws_s3_bucket.example.bucket
 }
